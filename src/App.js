@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import './App.css';
 import abi from "./utils/WavePortal.json";
+import Lottie from "lottie-react";
+import loadingIcon from "./utils/blockchainLoad.json";
 
 const getEthereumObject = () => window.ethereum;
 
@@ -37,6 +39,8 @@ async function findMetaMaskAccount() {
   }
 };
 
+
+
 // TODO 
 async function wave() {
   try {
@@ -48,7 +52,7 @@ async function wave() {
 
       let count = await wavePortalContract.getTotalWaves();
       console.log("Retrieved total wave count:", count.toNumber());
-
+      
       const waveTxn = await wavePortalContract.wave("testing."); 
       console.log("Mining...", waveTxn.hash);
 
@@ -85,9 +89,14 @@ async function connectWallet() {
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
+  const [loading, setLoadingIcon] = useState(false);
   
   //connectWallet();
   
+  const load = () => {
+    setLoadingIcon(current => !current);
+  };
+
   useEffect(async () => {
     const account = await findMetaMaskAccount();
     if (account !== null) {
@@ -99,17 +108,21 @@ function App() {
     <div className="mainContainer">
       <div className="dataContainer">
         <div className="header">
-        👋 Hey there!
+        👋 Sugma.
         </div>
 
         <div className="bio">
-        I am farza and I worked on self-driving cars so that's pretty cool right? Connect your Ethereum wallet and wave at me!
+        Testing Tree. 
         </div>
 
         <button className="waveButton" onClick={wave}>
           Wave at Me
         </button>
-
+        <button className="waveButton" onClick={load}>loading icon</button>
+        {loading && (
+          <Lottie animationData={loadingIcon} loop={true}/>
+        )}
+        
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>Connect Wallet</button>
         )}
