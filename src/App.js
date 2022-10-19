@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import './App.css';
 import abi from "./utils/WavePortal.json";
 import Lottie from "lottie-react";
-import loadingIcon from "./utils/blockchainLoad.json";
+import loadingIcon from "./utils/blockChainGrow.json";
 
 const getEthereumObject = () => window.ethereum;
 
