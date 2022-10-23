@@ -69,6 +69,10 @@ async function wave() {
   } catch (error) {
     console.log(error);
   }
+
+  return (
+    <h1>testing</h1>
+  );
 }
 
 async function connectWallet() {
@@ -86,6 +90,7 @@ async function connectWallet() {
     console.error(error);
   }
 };
+
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -110,7 +115,7 @@ function App() {
         <div className="header">
         👋 Sugma.
         </div>
-
+        
         <div className="bio">
         Testing Tree. 
         </div>
